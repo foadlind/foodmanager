@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block content %}
+		<section class="row-alt">
+			<div class="lead container">
+				<h1>Food Manager</h1>
+				<p>Select a recipe for each day of the week. When you are done, click on "Create Shopping List". In the next section you will get a shopping list that you can edit.</p>
+			</div>
+		</section>
+		<section class="row">
+			<div class="container">
+					<h2>Food plan for the week to come:</h2>
+					<form class="col-1-2" action="/shopping_list" method="post">
+						<fieldset class="register-group">
+							<label>
+								Day 1
+								<select name="Day 1">
+									<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 2
+								<select name="Day 2">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 3
+								<select name="Day 3">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 4
+								<select name="Day 4">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 5
+								<select name="Day 5">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 6
+								<select name="Day 6">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+							<label>
+								Day 7
+								<select name="Day 7">
+								<option disabled selected value> -- select a recipe -- </option>
+								{% for recipe in recipes %}
+									<option value="{{ recipe.name }}">{{ recipe.name }}</option>
+								{% endfor %}
+								</select>
+							</label>
+						</fieldset>
+						<input class="btn btn-default" type="submit" name="submit" value="Create Shopping List">
+					</form>
+					<a href="food_manager/add_recipe">Add a new recipe</a>
+			</div>
+		</section>
+{% endblock %}

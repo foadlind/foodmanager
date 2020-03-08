@@ -1,0 +1,44 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block title %}{{ recipe.name }} - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  	<h1>{{ recipe.name }}</h1>
+  	<p><a href="{% url 'edit_recipe' slug=recipe.slug %}" class="btn btn-outline-primary">Edit this recipe</a></p>
+  	<p><a href="{% url 'delete_recipe' slug=recipe.slug %}" class="btn btn-outline-danger">Delete</a></p>
+</div>
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="row">
+			<div class="container-fluid col-md-4">
+				<div class="list-group">
+					<h3>Ingredients:</h3>
+					<table class="table text-left">
+						<tbody>
+							{% for ingred in ingreds %}
+								<tr>
+									{% if ingred.amount%}
+										<td>{{ ingred.amount }}</td>
+									{% else %}
+										<td></td>
+									{% endif %}
+									<td>{{ ingred.unit }}</td>
+									<td>{{ ingred.name }}</td>
+								</tr>
+							{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="container-fluid col-md-8">
+			  	<h3>Instructions:</h3>
+				<p>{{ recipe.instructions|urlize }}</p>
+			</div>
+		</div>
+	</div>
+</div>
+<hr>
+<div class="container-fluid text-center">
+	<a href="{% url 'recipes' %}" class="btn btn-outline-primary">Mina Recept</a>
+</div>
+{% endblock %}}

@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block title %}Homepage - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="container-fluid text-center" id="hero">
+  	<h1>Happy shopping!</h1>
+  	<p>An email containing your shopping list is sent to your email address.</p>
+  	<a href="{% url 'home' %}" class="btn btn-primary">Home</a>
+</div>
+{% endblock %}

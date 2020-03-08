@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% load bootstrap4 %}
+{% block title %}Planner - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+	<h1>Weekly food plan</h1>
+</div>
+<div class="row">
+	<div class="container-fluid col-md-6 col-md-offset-3">
+		<table class="table table-striped table-hover ">
+			{% for key, value in plan.items %}
+				<tr>
+					<th> {{ key }} </th>
+					<td> {{ value }} </td>
+				</tr>
+			{% endfor %}
+		</table>
+		<hr>
+		<form class="form-horizontal" role="form" action="{% url 'email_sent' %}" method="POST">
+			{% csrf_token %}
+			<div class="form-group">
+				<label for="textArea" class="control-label">Shopping List</label>
+				<textarea class="form-control" name="list" rows="15">{% for item in shopping_items %}{{ item }}
+{% endfor %}</textarea>
+			</div>
+            <div class="text-right">
+				<button class="btn btn-outline-primary" type="submit">Email this to me</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}

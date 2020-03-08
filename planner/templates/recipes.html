@@ -1,0 +1,22 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block title %}Recipes - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+    <h1>Mina Recept</h1>
+    <p><a href="{% url 'import_recipe' %}" class="btn btn-outline-primary">Importera recept från URL</a></p>
+    <p><a href="{% url 'create_recipe' %}" class="btn btn-outline-primary">Lägg till eget recept</a></p>
+</div>
+<div class="row content">
+	<div class="container-fluid col-md-6 col-md-offset-3">
+		<p>Select a recipe to view or edit it: </p>
+		<div class="list-group">
+			{% for recipe in recipes %}
+			<a href="{% url 'recipe_detail' slug=recipe.slug %}" class="list-group-item list-group-item-action">
+					{{ recipe.name }}
+			</a>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+{% endblock %}

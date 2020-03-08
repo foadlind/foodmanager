@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}Create a Recipe - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  	<h1>Import a recipe</h1>
+</div>
+<div class="row content">
+	<div class="container-fluid col-md-10 col-md-offset-1">
+		{% bootstrap_messages %}
+		<form class="form-group" role="form" action="" method="post">
+			{% csrf_token %}
+			{% bootstrap_field form.from_url %}
+			<button class="btn btn-outline-primary" type="submit">Import</button>
+		</form>
+	</div>
+</div>
+<hr>
+<div class="container-fluid text-center">
+	<a href="{% url 'recipes' %}" class="btn btn-default">See all your recipes</a>
+</div>
+{% endblock %}

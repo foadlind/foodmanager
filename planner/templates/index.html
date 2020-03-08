@@ -1,0 +1,10 @@
+{% extends 'layouts/base.html' %}
+{% load staticfiles %}
+{% block title %}Homepage - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="container-fluid text-center" id="hero">
+  	<h1>KöketsMeny</h1>
+  	<p>Create a weekly food plan from your saved recipes. And enjoy the automatically generated shopping list!</p>
+	<a href="{% url 'planner' %}" class="btn btn-primary">Skapa matplan</a>
+</div>
+{% endblock %}

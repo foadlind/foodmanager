@@ -1,0 +1,56 @@
+{% extends 'layouts/base.html' %}
+{% load bootstrap4 %}
+{% load staticfiles %}
+{% block title %}Create a Recipe - {{ block.super }}{% endblock %}
+{% block content %}
+<div class="jumbotron text-center">
+  	<h1>Create a new recipe</h1>
+</div>
+<div class="row content">
+	<div class="container-fluid col-md-10 col-md-offset-2">
+		{% bootstrap_messages %}
+		<form class="form" role="form" action="" method="post" id="myForm">
+			<fieldset>
+				{% csrf_token %}
+				{% bootstrap_field form.name %}
+				{{ formset.management_form }}
+				<table class="table text-left">
+					<thead>
+						<tr>
+							<th>Mängd</th>
+							<th>Unit</th>
+							<th>Ingrediens</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for form in formset %}
+							{{ form.id }}
+							<tr>
+								<td>
+									{% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+									{{ form.amount }}
+								</td>
+								<td>{{ form.unit }}</td>
+								<td>{{ form.name }}</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+				{% bootstrap_field form.instructions %}
+			<button class="btn btn-outline-primary" type="submit">Save</button>
+			</fieldset>
+		</form>
+	</div>
+</div>
+<hr>
+<div class="container-fluid text-center">
+	<a href="{% url 'recipes' %}" class="btn btn-default">See all your recipes</a>
+</div>
+<script type="text/javascript">
+    $(function() {
+        $('#myForm tbody tr').formset({
+            prefix: '{{ formset.prefix }}'
+        });
+    })
+</script>
+{% endblock %}

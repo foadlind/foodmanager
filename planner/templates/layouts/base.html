@@ -1,0 +1,74 @@
+{# Load the tag library #}
+{% load bootstrap4 %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta charset="utf-8">
+		<title>
+			{% block title %}KöketsMeny{% endblock %}
+		</title>
+		{% block extraheader %}{% endblock %}
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/jquery.formset.js"></script>
+	</head>
+	<body>
+        <!-- Nav bar -->
+	    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="{% url 'home' %}">KöketsMeny</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item {% if nbar == 'home' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item {% if nbar == 'recipes' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'recipes' %}">Mina Recept</a>
+                    </li>
+                    <li class="nav-item {% if nbar == 'planner' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'planner' %}">Planera</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item {% if nbar == 'about' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'about' %}">Om oss</a>
+                    </li>
+                    <li class="nav-item {% if nbar == 'contact' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'contact' %}">Kontakt</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav my-2 my-lg-0">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'password_change' %}">Byta lösenord</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_logout' %}">Logga ut</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration_register' %}">Skapa konto</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'auth_login' %}">Logga in</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+		<!-- Content -->
+		{% block content %}{% endblock %}
+		{% block extrafooter %}{% endblock %}
+	</body>
+</html>

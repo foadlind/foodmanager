@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Home Intranet</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
+		<link href='https://fonts.googleapis.com/css?family=Lato:400,100,300' rel='stylesheet' type='text/css'>
+	</head>
+	<body style="background-color: #FFFFFF">
+		<section class="row-alt">
+			<div class="lead container">
+				<h1>Ready to print!</h1>
+				<p>Press Ctrl+P to print this page.</p>
+				<a href="/" class="btn btn-alt">Home Intranet</a>
+				<a href="/food_manager" class="btn btn-alt">Food Manager</a>
+			</div>
+		</section>
+		<section class="row">
+			<div class="grid">
+				<section class="col-1-2">
+					<h2>Food scedule:</h2>
+					<table border=1>
+						{% for key, value in plan.iteritems() %}
+							{% if key != 'submit' %}
+								<tr>
+									<th> {{ key }} </th>
+					        		<td> {{ value}} </td>
+					    		</tr>
+					    	{% endif %}
+					    {% endfor %}
+					</table>
+				</section>
+				<hr>
+				<section>
+					<h4>Shopping list:</h4>
+					<ul class="final-list">
+						{% for item in final_list %}
+	  							<li>{{ item }}</li>
+	  					{% endfor %}
+					</ul>
+				</section>
+			</div>
+		</section>
+	</body>
+</html>
